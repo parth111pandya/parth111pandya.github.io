@@ -22,7 +22,7 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarTitle(
-        title: "App Archer",
+        title: "App Archer Parth pandya",
         appBarFontFamily: EARTH_ORBIT_ERXTRA_BOLD,
       ),
       body: Padding(
