@@ -6,3 +6,4 @@ const String FONT_STYLE_QUICK_REGULAR = "QuicksandRegular";
 const String EARTH_ORBIT_ERXTRA_BOLD = "earthorbiterxtrabold";
 
 const String APP_ARCHER_IMAGE = 'assets/image/app_archer_image.png';
+const String DEMO_IMGE = 'assets/image/demo_image.jpg';

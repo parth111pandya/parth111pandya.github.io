@@ -12,4 +12,6 @@ class AppColors {
   static const darkBackgroundColorChipTheme = Color(0xFF1E1F1F);
   static const lightBackgroundColorChipTheme = Color(0xFFF5F5F5);
 
+  static const lightThemeYellowColor = Color(0xFFF9A11F);
+  static const darkThemeYellowColor = Color(0xFFFFC906);
 }

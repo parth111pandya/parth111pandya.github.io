@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio_20/screen/first_page/first_page_mobile_view.dart';
 import 'package:portfolio_20/screen/first_page/first_page_web_view.dart';
-import 'package:portfolio_20/screen/splash_screen.dart';
 import 'package:portfolio_20/utils/responsive_layout.dart';
 import 'package:portfolio_20/utils/themes/themes.dart';
 import 'package:sizer/sizer.dart';

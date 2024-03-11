@@ -25,13 +25,20 @@ ThemeData lightMode = ThemeData(
       fontFamily: FONT_STYLE_QUICK_MEDIUM,
       fontSize: 25,
     ),
+    displayMedium: TextStyle(
+      color: AppColors.lightThemeYellowColor,
+      fontFamily: FONT_STYLE_QUICK_MEDIUM,
+      fontSize: 15,
+    ),
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.lightBackgroundColorAppBarTheme,
   ),
   chipTheme: const ChipThemeData(
     backgroundColor: AppColors.lightBackgroundColorChipTheme,
-    side: BorderSide(color: Colors.blue),
+    side: BorderSide(
+      color: Colors.blue,
+    ),
     padding: EdgeInsets.zero,
     labelStyle: TextStyle(
       color: Colors.blue,
@@ -70,6 +77,11 @@ ThemeData darkMode = ThemeData(
       color: Colors.white,
       fontFamily: FONT_STYLE_QUICK_MEDIUM,
       fontSize: 25,
+    ),
+    displayMedium: TextStyle(
+      color: AppColors.darkThemeYellowColor,
+      fontFamily: FONT_STYLE_QUICK_MEDIUM,
+      fontSize: 15,
     ),
   ),
   appBarTheme: const AppBarTheme(
