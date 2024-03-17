@@ -24,22 +24,130 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
   Widget build(BuildContext context) {
     PageController pageController = PageController();
     List<Widget> list = <Widget>[
-      Center(
-          child: Pages(
-        text: "Page 1",
-      )),
-      Center(
-          child: Pages(
-        text: "Page 2",
-      )),
-      Center(
-          child: Pages(
-        text: "Page 3",
-      )),
-      Center(
-          child: Pages(
-        text: "Page 4",
-      ))
+      GridView.builder(
+          scrollDirection: Axis.horizontal,
+          physics: const PageScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            crossAxisCount: 2,
+            childAspectRatio: 0.74,
+          ),
+          shrinkWrap: true,
+          itemCount: 4,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: [
+                const Image(
+                  image: AssetImage(
+                    DEMO_IMGE,
+                  ),
+                ),
+                SizedBox(
+                  height: 1.h,
+                ),
+                Row(
+                  children: [
+                    Chip(
+                      label: RegularTextWidget(
+                        title: "Flutter",
+                        fontsize:
+                            Theme.of(context).textTheme.bodySmall!.fontSize,
+                        fontcolor:
+                            Theme.of(context).chipTheme.labelStyle!.color,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 0.4.w,
+                    ),
+                    Chip(
+                      label: RegularTextWidget(
+                        title: "Dart",
+                        fontsize:
+                            Theme.of(context).textTheme.bodySmall!.fontSize,
+                        fontcolor:
+                            Theme.of(context).chipTheme.labelStyle!.color,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 0.4.w,
+                    ),
+                    Chip(
+                      label: RegularTextWidget(
+                        title: "Flutter",
+                        fontsize:
+                            Theme.of(context).textTheme.bodySmall!.fontSize,
+                        fontcolor:
+                            Theme.of(context).chipTheme.labelStyle!.color,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          }),
+      GridView.builder(
+          scrollDirection: Axis.horizontal,
+          physics: const PageScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            crossAxisCount: 2,
+            childAspectRatio: 0.85,
+          ),
+          shrinkWrap: true,
+          itemCount: 1,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: [
+                const Image(
+                  image: AssetImage(
+                    DEMO_IMGE,
+                  ),
+                ),
+                SizedBox(
+                  height: 1.h,
+                ),
+                Row(
+                  children: [
+                    Chip(
+                      label: RegularTextWidget(
+                        title: "Flutter",
+                        fontsize:
+                            Theme.of(context).textTheme.bodySmall!.fontSize,
+                        fontcolor:
+                            Theme.of(context).chipTheme.labelStyle!.color,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 0.4.w,
+                    ),
+                    Chip(
+                      label: RegularTextWidget(
+                        title: "Dart",
+                        fontsize:
+                            Theme.of(context).textTheme.bodySmall!.fontSize,
+                        fontcolor:
+                            Theme.of(context).chipTheme.labelStyle!.color,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 0.4.w,
+                    ),
+                    Chip(
+                      label: RegularTextWidget(
+                        title: "Flutter",
+                        fontsize:
+                            Theme.of(context).textTheme.bodySmall!.fontSize,
+                        fontcolor:
+                            Theme.of(context).chipTheme.labelStyle!.color,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          }),
     ];
     int curr = 0;
     return Scaffold(
@@ -196,98 +304,126 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                       height: 1.h,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         RegularTextWidget(
                           title: "Portfolio",
                           fontcolor:
                               Theme.of(context).textTheme.displayMedium!.color,
-                        )
+                        ),
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                pageController.previousPage(
+                                    duration:
+                                        const Duration(milliseconds: 1000),
+                                    curve: Curves.easeIn);
+                              },
+                              child: RegularTextWidget(
+                                title: "<",
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                pageController.nextPage(
+                                    duration:
+                                        const Duration(milliseconds: 1000),
+                                    curve: Curves.easeIn);
+                              },
+                              child: RegularTextWidget(
+                                title: ">",
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     SizedBox(
                       height: 1.h,
                     ),
-                    SizedBox(
-                      height: 100.h,
-                      width: double.infinity,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: GridView.builder(
-                            scrollDirection: Axis.horizontal,
-                            physics: const PageScrollPhysics(),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              mainAxisSpacing: 10,
-                              crossAxisSpacing: 10,
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.85,
-                            ),
-                            shrinkWrap: true,
-                            itemCount: 5,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Column(
-                                children: [
-                                  const Image(
-                                    image: AssetImage(
-                                      DEMO_IMGE,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Chip(
-                                        label: RegularTextWidget(
-                                          title: "Flutter",
-                                          fontsize:
-                                          Theme.of(context).textTheme.bodySmall!.fontSize,
-                                          fontcolor:
-                                          Theme.of(context).chipTheme.labelStyle!.color,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 0.4.w,
-                                      ),
-                                      Chip(
-                                        label: RegularTextWidget(
-                                          title: "Dart",
-                                          fontsize:
-                                          Theme.of(context).textTheme.bodySmall!.fontSize,
-                                          fontcolor:
-                                          Theme.of(context).chipTheme.labelStyle!.color,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 0.4.w,
-                                      ),
-                                      Chip(
-                                        label: RegularTextWidget(
-                                          title: "Flutter",
-                                          fontsize:
-                                          Theme.of(context).textTheme.bodySmall!.fontSize,
-                                          fontcolor:
-                                          Theme.of(context).chipTheme.labelStyle!.color,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )  ;
-                            }),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        pageController.nextPage(
-                            duration: Duration(milliseconds: 1000),
-                            curve: Curves.easeIn);
-                
-                      },
-                      child: RegularTextWidget(
-                        title: "Next",
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: 100.h,
+                    //   width: double.infinity,
+                    //   child: SingleChildScrollView(
+                    //     scrollDirection: Axis.horizontal,
+                    //     child: GridView.builder(
+                    //         scrollDirection: Axis.horizontal,
+                    //         physics: const PageScrollPhysics(),
+                    //         gridDelegate:
+                    //             const SliverGridDelegateWithFixedCrossAxisCount(
+                    //           mainAxisSpacing: 10,
+                    //           crossAxisSpacing: 10,
+                    //           crossAxisCount: 2,
+                    //           childAspectRatio: 0.85,
+                    //         ),
+                    //         shrinkWrap: true,
+                    //         itemCount: 5,
+                    //         itemBuilder: (BuildContext context, int index) {
+                    //           return Column(
+                    //             children: [
+                    //               const Image(
+                    //                 image: AssetImage(
+                    //                   DEMO_IMGE,
+                    //                 ),
+                    //               ),
+                    //               SizedBox(
+                    //                 height: 1.h,
+                    //               ),
+                    //               Row(
+                    //                 children: [
+                    //                   Chip(
+                    //                     label: RegularTextWidget(
+                    //                       title: "Flutter",
+                    //                       fontsize: Theme.of(context)
+                    //                           .textTheme
+                    //                           .bodySmall!
+                    //                           .fontSize,
+                    //                       fontcolor: Theme.of(context)
+                    //                           .chipTheme
+                    //                           .labelStyle!
+                    //                           .color,
+                    //                     ),
+                    //                   ),
+                    //                   SizedBox(
+                    //                     width: 0.4.w,
+                    //                   ),
+                    //                   Chip(
+                    //                     label: RegularTextWidget(
+                    //                       title: "Dart",
+                    //                       fontsize: Theme.of(context)
+                    //                           .textTheme
+                    //                           .bodySmall!
+                    //                           .fontSize,
+                    //                       fontcolor: Theme.of(context)
+                    //                           .chipTheme
+                    //                           .labelStyle!
+                    //                           .color,
+                    //                     ),
+                    //                   ),
+                    //                   SizedBox(
+                    //                     width: 0.4.w,
+                    //                   ),
+                    //                   Chip(
+                    //                     label: RegularTextWidget(
+                    //                       title: "Flutter",
+                    //                       fontsize: Theme.of(context)
+                    //                           .textTheme
+                    //                           .bodySmall!
+                    //                           .fontSize,
+                    //                       fontcolor: Theme.of(context)
+                    //                           .chipTheme
+                    //                           .labelStyle!
+                    //                           .color,
+                    //                     ),
+                    //                   ),
+                    //                 ],
+                    //               ),
+                    //             ],
+                    //           );
+                    //         }),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 80.h,
                       width: double.infinity,
@@ -337,7 +473,7 @@ class Pages extends StatelessWidget {
             Text(
               text,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
           ]),
     );
