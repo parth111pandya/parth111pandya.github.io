@@ -14,4 +14,7 @@ class AppColors {
 
   static const lightThemeYellowColor = Color(0xFFF9A11F);
   static const darkThemeYellowColor = Color(0xFFFFC906);
+
+  static const lightThemeCardColor = Color(0xFFEBEBEB);
+  static const darkThemeCardColor = Color(0xFF7A7A7A);
 }

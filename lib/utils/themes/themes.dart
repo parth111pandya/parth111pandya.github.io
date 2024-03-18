@@ -6,6 +6,7 @@ import '../const.dart';
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   scaffoldBackgroundColor: AppColors.lightScaffoldBackgroundColor,
+  cardColor: AppColors.lightThemeCardColor,
   colorScheme: const ColorScheme.light(
     primary: Colors.white,
   ),
@@ -62,6 +63,7 @@ ThemeData lightMode = ThemeData(
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: AppColors.darkScaffoldBackgroundColor,
+  cardColor: AppColors.darkThemeCardColor,
   textTheme: const TextTheme(
     bodySmall: TextStyle(
       color: Colors.white,
