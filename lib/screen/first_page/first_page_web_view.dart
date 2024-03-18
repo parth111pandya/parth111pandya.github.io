@@ -1,16 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 import 'package:portfolio_20/customs/custom_appbar.dart';
 import 'package:portfolio_20/customs/medium_text_widget.dart';
 import 'package:portfolio_20/customs/regular_text_widget.dart';
-import 'package:portfolio_20/utils/colors.dart';
 import 'package:sizer/sizer.dart';
+import 'package:timelines/timelines.dart';
 import '../../customs/bold_text_widget.dart';
 import '../../customs/custom_card.dart';
 import '../../utils/const.dart';
@@ -498,6 +492,25 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                           ),
                         ),
                       ),
+                      ExpansionTile(
+                        initiallyExpanded: true,
+                        title: RegularTextWidget(
+                          title: 'Work Experience',
+                        ),
+                        children: <Widget>[
+                          Timeline.tileBuilder(
+                            shrinkWrap: true,
+                            builder: TimelineTileBuilder.fromStyle(
+                              contentsAlign: ContentsAlign.alternating,
+                              contentsBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.all(24.0),
+                                child: Text('Timeline Event $index'),
+                              ),
+                              itemCount: 10,
+                            ),
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ),
@@ -506,27 +519,6 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class Pages extends StatelessWidget {
-  final text;
-
-  Pages({this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
-          ]),
     );
   }
 }
