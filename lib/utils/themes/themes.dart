@@ -8,7 +8,8 @@ ThemeData lightMode = ThemeData(
   scaffoldBackgroundColor: AppColors.lightScaffoldBackgroundColor,
   cardColor: AppColors.lightThemeCardColor,
   colorScheme: const ColorScheme.light(
-    primary: Colors.white,
+    primary: Color(0xFF3D3D3D),
+    secondary: Color(0xFFF9A11F),
   ),
   textTheme: const TextTheme(
     bodySmall: TextStyle(
@@ -19,7 +20,7 @@ ThemeData lightMode = ThemeData(
     bodyMedium: TextStyle(
       color: Colors.black,
       fontFamily: FONT_STYLE_QUICK_MEDIUM,
-      fontSize: 20,
+      fontSize: 18,
     ),
     headlineLarge: TextStyle(
       color: Colors.black,
@@ -73,7 +74,7 @@ ThemeData darkMode = ThemeData(
     bodyMedium: TextStyle(
       color: Colors.white,
       fontFamily: FONT_STYLE_QUICK_MEDIUM,
-      fontSize: 20,
+      fontSize: 18,
     ),
     headlineLarge: TextStyle(
       color: Colors.white,
@@ -108,5 +109,9 @@ ThemeData darkMode = ThemeData(
         ),
       ),
     ),
+  ),
+  colorScheme: const ColorScheme.dark(
+    primary: Color(0xFFE0E0E0),
+    secondary: Color(0xFFFFC906),
   ),
 );

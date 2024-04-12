@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: lightMode,
       darkTheme: darkMode,
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: Sizer(
         builder: (context, orientation, deviceType) {

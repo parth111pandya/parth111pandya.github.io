@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_20/customs/custom_appbar.dart';
 import 'package:portfolio_20/customs/medium_text_widget.dart';
 import 'package:portfolio_20/customs/regular_text_widget.dart';
+import 'package:portfolio_20/customs/semi_bold_text_widget.dart';
+import 'package:portfolio_20/utils/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timelines/timelines.dart';
 import '../../customs/bold_text_widget.dart';
@@ -17,135 +20,133 @@ class FirstPageWebView extends StatefulWidget {
 }
 
 class _FirstPageWebViewState extends State<FirstPageWebView> {
+  Widget portfoiloWidget() {
+    return Column(
+      children: [
+        const Image(
+          image: AssetImage(
+            DEMO_IMGE,
+          ),
+        ),
+        SizedBox(
+          height: 1.h,
+        ),
+        Row(
+          children: [
+            Chip(
+              label: RegularTextWidget(
+                title: "Flutter",
+                fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                fontcolor: Theme.of(context).chipTheme.labelStyle!.color,
+              ),
+            ),
+            SizedBox(
+              width: 0.4.w,
+            ),
+            Chip(
+              label: RegularTextWidget(
+                title: "Dart",
+                fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                fontcolor: Theme.of(context).chipTheme.labelStyle!.color,
+              ),
+            ),
+            SizedBox(
+              width: 0.4.w,
+            ),
+            Chip(
+              label: RegularTextWidget(
+                title: "Flutter",
+                fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                fontcolor: Theme.of(context).chipTheme.labelStyle!.color,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  List<Widget> list() {
+    List<Widget> paginationGridList = [];
+    for (int i = 0; i < (portfoilListCount / 4).ceil(); i++) {
+      paginationGridList.add(
+        GridView.builder(
+          scrollDirection: Axis.horizontal,
+          physics: const PageScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            crossAxisCount: 2,
+            childAspectRatio: 0.85,
+          ),
+          shrinkWrap: true,
+          itemCount: i == (portfoilListCount / 4).ceil() - 1
+              ? portfoilListCount % 4
+              : 4,
+          itemBuilder: (BuildContext context, int index) {
+            return portfoiloWidget();
+          },
+        ),
+      );
+    }
+    return paginationGridList;
+  }
+
+  Widget workExplist() {
+    return Padding(
+      padding: EdgeInsets.only(left: 1.w, bottom: 3.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              BoldTextWidget(
+                title: "Flutter Developer",
+                // fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+              ),
+              BoldTextWidget(
+                title: "2022 - PRESENT",
+                // fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+              ),
+            ],
+          ),
+          BoldTextWidget(
+            title: "@ GNWebSoft Pvt. Ltd",
+            fontcolor: Theme.of(context).colorScheme.primary,
+            fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          BoldTextWidget(
+            title:
+                """Designed and prototyped proof of concept for a native app with core experiences encompassing crypto peer-to-peer payments, NFT gallery, authentication, peer-to-peer invites, Plaid integration for fiat on/offboarding, and two-factor authentication.
+      
+      Drafted product design and research job requisitions, hiring process, and pipeline tracking and reporting.
+      
+      Championed a design-driven culture, collaborating cross-functionally with product, engineering, and marketing to align design initiatives with business goals.
+      
+      Played a pivotal role in shaping the product roadmap, influencing the strategic direction of product development through design insights and crypto-wallet trends.
+      
+      Recruited and directed agency partners, spearheaded branding initiatives, and expanded the internal design team to a size of three members while simultaneously enhancing design quality to elevate overall standards.
+      
+      Acknowledged by the C-suite and lead investors for transformative design leadership, receiving accolades for instrumental contributions to a16z's portfolio of pre-seed investments.
+      
+      Improved the aggregation and capture of the stakeholders' feedback via design reviews, written standups, Loom casts, and roadmap integration with Productboard.""",
+            fontcolor: Theme.of(context).colorScheme.primary,
+            align: TextAlign.justify,
+          )
+        ],
+      ),
+    );
+  }
+
+  int portfoilListCount = 17;
+
   @override
   Widget build(BuildContext context) {
-    PageController pageController = PageController();
-    List<Widget> list = <Widget>[
-      GridView.builder(
-          scrollDirection: Axis.horizontal,
-          physics: const PageScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            crossAxisCount: 2,
-            childAspectRatio: 0.85,
-          ),
-          shrinkWrap: true,
-          itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                const Image(
-                  image: AssetImage(
-                    DEMO_IMGE,
-                  ),
-                ),
-                SizedBox(
-                  height: 1.h,
-                ),
-                Row(
-                  children: [
-                    Chip(
-                      label: RegularTextWidget(
-                        title: "Flutter",
-                        fontsize:
-                            Theme.of(context).textTheme.bodySmall!.fontSize,
-                        fontcolor:
-                            Theme.of(context).chipTheme.labelStyle!.color,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 0.4.w,
-                    ),
-                    Chip(
-                      label: RegularTextWidget(
-                        title: "Dart",
-                        fontsize:
-                            Theme.of(context).textTheme.bodySmall!.fontSize,
-                        fontcolor:
-                            Theme.of(context).chipTheme.labelStyle!.color,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 0.4.w,
-                    ),
-                    Chip(
-                      label: RegularTextWidget(
-                        title: "Flutter",
-                        fontsize:
-                            Theme.of(context).textTheme.bodySmall!.fontSize,
-                        fontcolor:
-                            Theme.of(context).chipTheme.labelStyle!.color,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          }),
-      GridView.builder(
-          scrollDirection: Axis.horizontal,
-          physics: const PageScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            crossAxisCount: 2,
-            childAspectRatio: 0.85,
-          ),
-          shrinkWrap: true,
-          itemCount: 1,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                const Image(
-                  image: AssetImage(
-                    DEMO_IMGE,
-                  ),
-                ),
-                SizedBox(
-                  height: 1.h,
-                ),
-                Row(
-                  children: [
-                    Chip(
-                      label: RegularTextWidget(
-                        title: "Flutter",
-                        fontsize:
-                            Theme.of(context).textTheme.bodySmall!.fontSize,
-                        fontcolor:
-                            Theme.of(context).chipTheme.labelStyle!.color,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 0.4.w,
-                    ),
-                    Chip(
-                      label: RegularTextWidget(
-                        title: "Dart",
-                        fontsize:
-                            Theme.of(context).textTheme.bodySmall!.fontSize,
-                        fontcolor:
-                            Theme.of(context).chipTheme.labelStyle!.color,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 0.4.w,
-                    ),
-                    Chip(
-                      label: RegularTextWidget(
-                        title: "Flutter",
-                        fontsize:
-                            Theme.of(context).textTheme.bodySmall!.fontSize,
-                        fontcolor:
-                            Theme.of(context).chipTheme.labelStyle!.color,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          }),
-    ];
+    PageController portfolioPageController = PageController();
     int curr = 0;
     return Scaffold(
       appBar: CustomAppBarTitle(
@@ -162,8 +163,10 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
           children: [
             Expanded(
               flex: 2,
-              child: Center(
+              child: Align(
+                alignment: Alignment.topLeft,
                 child: CustomCard(
+                  margin: EdgeInsets.zero,
                   child: const Image(
                     image: AssetImage(
                       APP_ARCHER_IMAGE,
@@ -173,8 +176,11 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                 ),
               ),
             ),
+            SizedBox(
+              width: 2.w,
+            ),
             Expanded(
-              flex: 3,
+              flex: 4,
               child: ScrollConfiguration(
                 behavior:
                     ScrollConfiguration.of(context).copyWith(scrollbars: false),
@@ -188,10 +194,17 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                             Theme.of(context).textTheme.headlineLarge!.fontSize,
                         fontFamily: FONT_STYLE_QUICK_SEMI_BOLD,
                       ),
-                      RegularTextWidget(
-                        title: "Sr. Flutter Developer",
-                        fontsize:
-                            Theme.of(context).textTheme.bodySmall!.fontSize,
+                      Row(
+                        children: [
+                          FlutterLogo(
+                            size: 3.h,
+                          ),
+                          RegularTextWidget(
+                            title: "Sr. Flutter Developer",
+                            fontsize:
+                                Theme.of(context).textTheme.bodySmall!.fontSize,
+                          ),
+                        ],
                       ),
                       const Divider(),
                       SizedBox(
@@ -337,7 +350,7 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                               CustomCard(
                                 isGiveWith: false,
                                 onCardPress: () {
-                                  pageController.previousPage(
+                                  portfolioPageController.previousPage(
                                     duration:
                                         const Duration(milliseconds: 1000),
                                     curve: Curves.easeIn,
@@ -365,7 +378,7 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                                   horizontal: 0.6.w,
                                 ),
                                 onCardPress: () {
-                                  pageController.nextPage(
+                                  portfolioPageController.nextPage(
                                     duration:
                                         const Duration(milliseconds: 1000),
                                     curve: Curves.easeIn,
@@ -386,88 +399,6 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                       SizedBox(
                         height: 1.5.h,
                       ),
-                      // SizedBox(
-                      //   height: 100.h,
-                      //   width: double.infinity,
-                      //   child: SingleChildScrollView(
-                      //     scrollDirection: Axis.horizontal,
-                      //     child: GridView.builder(
-                      //         scrollDirection: Axis.horizontal,
-                      //         physics: const PageScrollPhysics(),
-                      //         gridDelegate:
-                      //             const SliverGridDelegateWithFixedCrossAxisCount(
-                      //           mainAxisSpacing: 10,
-                      //           crossAxisSpacing: 10,
-                      //           crossAxisCount: 2,
-                      //           childAspectRatio: 0.85,
-                      //         ),
-                      //         shrinkWrap: true,
-                      //         itemCount: 5,
-                      //         itemBuilder: (BuildContext context, int index) {
-                      //           return Column(
-                      //             children: [
-                      //               const Image(
-                      //                 image: AssetImage(
-                      //                   DEMO_IMGE,
-                      //                 ),
-                      //               ),
-                      //               SizedBox(
-                      //                 height: 1.h,
-                      //               ),
-                      //               Row(
-                      //                 children: [
-                      //                   Chip(
-                      //                     label: RegularTextWidget(
-                      //                       title: "Flutter",
-                      //                       fontsize: Theme.of(context)
-                      //                           .textTheme
-                      //                           .bodySmall!
-                      //                           .fontSize,
-                      //                       fontcolor: Theme.of(context)
-                      //                           .chipTheme
-                      //                           .labelStyle!
-                      //                           .color,
-                      //                     ),
-                      //                   ),
-                      //                   SizedBox(
-                      //                     width: 0.4.w,
-                      //                   ),
-                      //                   Chip(
-                      //                     label: RegularTextWidget(
-                      //                       title: "Dart",
-                      //                       fontsize: Theme.of(context)
-                      //                           .textTheme
-                      //                           .bodySmall!
-                      //                           .fontSize,
-                      //                       fontcolor: Theme.of(context)
-                      //                           .chipTheme
-                      //                           .labelStyle!
-                      //                           .color,
-                      //                     ),
-                      //                   ),
-                      //                   SizedBox(
-                      //                     width: 0.4.w,
-                      //                   ),
-                      //                   Chip(
-                      //                     label: RegularTextWidget(
-                      //                       title: "Flutter",
-                      //                       fontsize: Theme.of(context)
-                      //                           .textTheme
-                      //                           .bodySmall!
-                      //                           .fontSize,
-                      //                       fontcolor: Theme.of(context)
-                      //                           .chipTheme
-                      //                           .labelStyle!
-                      //                           .color,
-                      //                     ),
-                      //                   ),
-                      //                 ],
-                      //               ),
-                      //             ],
-                      //           );
-                      //         }),
-                      //   ),
-                      // ),
                       SizedBox(
                         height: 80.h,
                         width: double.infinity,
@@ -480,35 +411,95 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                           ),
                           child: PageView(
                             scrollDirection: Axis.horizontal,
-                            // reverse: true,
-                            // physics: BouncingScrollPhysics(),
-                            controller: pageController,
+                            controller: portfolioPageController,
                             onPageChanged: (num) {
                               setState(() {
                                 curr = num;
                               });
                             },
-                            children: list,
+                            children: list(),
                           ),
                         ),
                       ),
                       ExpansionTile(
                         initiallyExpanded: true,
+                        tilePadding: EdgeInsets.all(6),
                         title: RegularTextWidget(
                           title: 'Work Experience',
                         ),
                         children: <Widget>[
-                          Timeline.tileBuilder(
-                            shrinkWrap: true,
-                            builder: TimelineTileBuilder.fromStyle(
-                              contentsAlign: ContentsAlign.alternating,
-                              contentsBuilder: (context, index) => Padding(
-                                padding: const EdgeInsets.all(24.0),
-                                child: Text('Timeline Event $index'),
+                          Padding(
+                            padding: EdgeInsets.only(left: 6),
+                            child: FixedTimeline.tileBuilder(
+                              theme: TimelineTheme.of(context).copyWith(
+                                nodePosition: 0,
                               ),
-                              itemCount: 10,
+                              builder: TimelineTileBuilder.connected(
+                                contentsAlign: ContentsAlign.basic,
+                                contentsBuilder: (context, index) =>
+                                    workExplist(),
+                                itemCount: 2,
+                                indicatorPositionBuilder: (context, index) {
+                                  return 0.01;
+                                },
+                                indicatorBuilder: (_, index) {
+                                  return DotIndicator(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    size: 12,
+                                  );
+                                },
+                                lastConnectorBuilder: (context) {
+                                  return DashedLineConnector(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  );
+                                },
+                                connectorBuilder: (_, index, ___) =>
+                                    DashedLineConnector(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  thickness: 2,
+                                ), // indicatorStyle: IndicatorStyle.dot,
+                              ),
                             ),
                           )
+                        ],
+                      ),
+                      ExpansionTile(
+                        initiallyExpanded: true,
+                        tilePadding: EdgeInsets.all(6),
+                        title: RegularTextWidget(
+                          title: 'Education',
+                        ),
+                        children: <Widget>[
+                          Padding(
+                              padding: EdgeInsets.all(6),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      BoldTextWidget(
+                                        title:
+                                            "Bachelor of Engineering in Computer Engineering",
+                                        fontFamily: FONT_STYLE_QUICK_BOLD,
+                                      ),
+                                      BoldTextWidget(
+                                        title: "2019-2023",
+                                      ),
+                                    ],
+                                  ),
+                                  BoldTextWidget(
+                                    title: "Darshan University, India",
+                                    fontsize: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .fontSize,
+                                  ),
+                                ],
+                              ))
                         ],
                       )
                     ],

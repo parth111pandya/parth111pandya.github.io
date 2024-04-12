@@ -51,9 +51,9 @@ class _CustomAppBarTitleState extends State<CustomAppBarTitle> {
               SizedBox(
                 width: 2.w,
               ),
-              const Image(
-                image: AssetImage('assets/image/app_archer_image.png'),
-                height: 40,
+              Image(
+                image: const AssetImage('assets/image/app_archer_image.png'),
+                height: 5.h,
               ),
               SizedBox(
                 width: 1.w,
@@ -69,18 +69,21 @@ class _CustomAppBarTitleState extends State<CustomAppBarTitle> {
         Row(
           children: widget.actionsWidget ?? [],
         ),
-        IconButton(
-          onPressed: () {
-            Get.changeThemeMode(
-              Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
-            );
-          },
-          icon: Icon(
-            Get.isDarkMode ? Icons.dark_mode : Icons.light_mode_outlined,
+        Center(
+          child: IconButton(
+            onPressed: () {
+              Get.changeThemeMode(
+                Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
+              );
+            },
+            icon: Icon(
+              Get.isDarkMode ? Icons.dark_mode : Icons.light_mode_outlined,
+              size: 4.h,
+            ),
           ),
         ),
         SizedBox(
-          width: 2.w,
+          width: 1.w,
         )
       ],
     );
