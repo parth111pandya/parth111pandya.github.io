@@ -123,17 +123,7 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
             title:
                 """Designed and prototyped proof of concept for a native app with core experiences encompassing crypto peer-to-peer payments, NFT gallery, authentication, peer-to-peer invites, Plaid integration for fiat on/offboarding, and two-factor authentication.
       
-      Drafted product design and research job requisitions, hiring process, and pipeline tracking and reporting.
-      
-      Championed a design-driven culture, collaborating cross-functionally with product, engineering, and marketing to align design initiatives with business goals.
-      
-      Played a pivotal role in shaping the product roadmap, influencing the strategic direction of product development through design insights and crypto-wallet trends.
-      
-      Recruited and directed agency partners, spearheaded branding initiatives, and expanded the internal design team to a size of three members while simultaneously enhancing design quality to elevate overall standards.
-      
-      Acknowledged by the C-suite and lead investors for transformative design leadership, receiving accolades for instrumental contributions to a16z's portfolio of pre-seed investments.
-      
-      Improved the aggregation and capture of the stakeholders' feedback via design reviews, written standups, Loom casts, and roadmap integration with Productboard.""",
+      Drafted product design and research job requisitions, hiring process, and pipeline tracking and reporting.""",
             fontcolor: Theme.of(context).colorScheme.primary,
             align: TextAlign.justify,
           )
@@ -143,11 +133,14 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
   }
 
   int portfoilListCount = 17;
+  final ExpansionTileController controller = ExpansionTileController();
 
   @override
   Widget build(BuildContext context) {
     PageController portfolioPageController = PageController();
     int curr = 0;
+    int selected = -1;
+
     return Scaffold(
       appBar: CustomAppBarTitle(
         title: "App Archer",
@@ -422,14 +415,15 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                         ),
                       ),
                       ExpansionTile(
-                        initiallyExpanded: true,
-                        tilePadding: EdgeInsets.all(6),
+                        // initiallyExpanded: true,
+                        tilePadding: const EdgeInsets.all(6),
                         title: RegularTextWidget(
                           title: 'Work Experience',
                         ),
+                        key: const Key('0'),
                         children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(left: 6),
+                            padding: const EdgeInsets.only(left: 6),
                             child: FixedTimeline.tileBuilder(
                               theme: TimelineTheme.of(context).copyWith(
                                 nodePosition: 0,
@@ -464,43 +458,96 @@ class _FirstPageWebViewState extends State<FirstPageWebView> {
                             ),
                           )
                         ],
+                        onExpansionChanged: (expanded) {
+                          if (expanded) {
+                            setState(() {
+                              selected = 0;
+                            });
+                          } else {
+                            setState(() {
+                              selected = -1;
+                            });
+                          }
+                        },
                       ),
                       ExpansionTile(
-                        initiallyExpanded: true,
-                        tilePadding: EdgeInsets.all(6),
+                        key: const Key('1'),
+                        tilePadding: const EdgeInsets.all(6),
                         title: RegularTextWidget(
                           title: 'Education',
                         ),
+                        controller: controller,
                         children: <Widget>[
                           Padding(
-                              padding: EdgeInsets.all(6),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      BoldTextWidget(
-                                        title:
-                                            "Bachelor of Engineering in Computer Engineering",
-                                        fontFamily: FONT_STYLE_QUICK_BOLD,
-                                      ),
-                                      BoldTextWidget(
-                                        title: "2019-2023",
-                                      ),
-                                    ],
-                                  ),
-                                  BoldTextWidget(
-                                    title: "Darshan University, India",
-                                    fontsize: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .fontSize,
-                                  ),
-                                ],
-                              ))
+                            padding: const EdgeInsets.all(6),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    BoldTextWidget(
+                                      title:
+                                          "Bachelor of Engineering in Computer Engineering",
+                                      fontFamily: FONT_STYLE_QUICK_BOLD,
+                                    ),
+                                    BoldTextWidget(
+                                      title: "2019-2023",
+                                    ),
+                                  ],
+                                ),
+                                BoldTextWidget(
+                                  title: "Darshan University, India",
+                                  fontsize: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .fontSize,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(6),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    BoldTextWidget(
+                                      title: "Higher secondary",
+                                      fontFamily: FONT_STYLE_QUICK_BOLD,
+                                    ),
+                                    BoldTextWidget(
+                                      title: "2017-2019",
+                                    ),
+                                  ],
+                                ),
+                                BoldTextWidget(
+                                  title:
+                                      "Krishna International School, Rajkot, Gujarat, India",
+                                  fontsize: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .fontSize,
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
+                        onExpansionChanged: (expanded) {
+                          if (expanded) {
+                            setState(() {
+                              selected = 1;
+                            });
+                          } else {
+                            setState(() {
+                              selected = -1;
+                            });
+                          }
+                        },
                       )
                     ],
                   ),

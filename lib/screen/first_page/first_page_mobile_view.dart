@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_20/customs/bold_text_widget.dart';
 import 'package:portfolio_20/customs/custom_appbar.dart';
 import 'package:sizer/sizer.dart';
+import 'package:timelines/timelines.dart';
 import '../../customs/custom_card.dart';
 import '../../customs/regular_text_widget.dart';
 import '../../utils/const.dart';
@@ -14,8 +16,110 @@ class FirstPageMobileView extends StatefulWidget {
 }
 
 class _FirstPageMobileViewState extends State<FirstPageMobileView> {
+  int portfoilListCount = 17;
+
+  List<Widget> list() {
+    List<Widget> paginationGridList = [];
+    for (int i = 0; i < (portfoilListCount / 4).ceil(); i++) {
+      paginationGridList.add(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const Image(
+                image: AssetImage(
+                  DEMO_IMGE,
+                ),
+              ),
+              SizedBox(
+                height: 1.h,
+              ),
+              Row(
+                children: [
+                  Chip(
+                    label: RegularTextWidget(
+                      title: "Flutter",
+                      fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                      fontcolor: Theme.of(context).chipTheme.labelStyle!.color,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 0.4.w,
+                  ),
+                  Chip(
+                    label: RegularTextWidget(
+                      title: "Dart",
+                      fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                      fontcolor: Theme.of(context).chipTheme.labelStyle!.color,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 0.4.w,
+                  ),
+                  Chip(
+                    label: RegularTextWidget(
+                      title: "Flutter",
+                      fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                      fontcolor: Theme.of(context).chipTheme.labelStyle!.color,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    return paginationGridList;
+  }
+
+  Widget workExplist() {
+    return Padding(
+      padding: EdgeInsets.only(left: 1.w, bottom: 3.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              BoldTextWidget(
+                title: "Flutter Developer",
+                // fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+              ),
+              BoldTextWidget(
+                title: "2022 - PRESENT",
+                // fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+              ),
+            ],
+          ),
+          BoldTextWidget(
+            title: "@ GNWebSoft Pvt. Ltd",
+            fontcolor: Theme.of(context).colorScheme.primary,
+            fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          BoldTextWidget(
+            title:
+                """Designed and prototyped proof of concept for a native app with core experiences encompassing crypto peer-to-peer payments, NFT gallery, authentication, peer-to-peer invites, Plaid integration for fiat on/offboarding, and two-factor authentication.
+      
+      Drafted product design and research job requisitions, hiring process, and pipeline tracking and reporting.""",
+            fontcolor: Theme.of(context).colorScheme.primary,
+            align: TextAlign.justify,
+          )
+        ],
+      ),
+    );
+  }
+
+  final ExpansionTileController controller = ExpansionTileController();
+
   @override
   Widget build(BuildContext context) {
+    PageController portfolioPageController = PageController();
+    int curr = 0;
+    int selected = -1;
     return Scaffold(
       appBar: CustomAppBarTitle(
         title: "App Archer",
@@ -97,10 +201,8 @@ class _FirstPageMobileViewState extends State<FirstPageMobileView> {
                   Chip(
                     label: RegularTextWidget(
                       title: "Flutter",
-                      fontsize:
-                          Theme.of(context).textTheme.bodySmall!.fontSize,
-                      fontcolor:
-                          Theme.of(context).chipTheme.labelStyle!.color,
+                      fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                      fontcolor: Theme.of(context).chipTheme.labelStyle!.color,
                     ),
                   ),
                   SizedBox(
@@ -109,10 +211,8 @@ class _FirstPageMobileViewState extends State<FirstPageMobileView> {
                   Chip(
                     label: RegularTextWidget(
                       title: "Dart",
-                      fontsize:
-                          Theme.of(context).textTheme.bodySmall!.fontSize,
-                      fontcolor:
-                          Theme.of(context).chipTheme.labelStyle!.color,
+                      fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                      fontcolor: Theme.of(context).chipTheme.labelStyle!.color,
                     ),
                   ),
                   SizedBox(
@@ -121,14 +221,220 @@ class _FirstPageMobileViewState extends State<FirstPageMobileView> {
                   Chip(
                     label: RegularTextWidget(
                       title: "Flutter",
-                      fontsize:
-                          Theme.of(context).textTheme.bodySmall!.fontSize,
-                      fontcolor:
-                          Theme.of(context).chipTheme.labelStyle!.color,
+                      fontsize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                      fontcolor: Theme.of(context).chipTheme.labelStyle!.color,
                     ),
                   ),
                 ],
               ),
+              SizedBox(
+                height: 1.h,
+              ),
+              Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RegularTextWidget(
+                    title: "Portfolio",
+                    fontcolor: Theme.of(context).textTheme.displayMedium!.color,
+                  ),
+                  Row(
+                    children: [
+                      CustomCard(
+                        isGiveWith: false,
+                        onCardPress: () {
+                          portfolioPageController.previousPage(
+                            duration: const Duration(milliseconds: 1000),
+                            curve: Curves.easeIn,
+                          );
+                        },
+                        margin: EdgeInsets.zero,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 2.w,
+                        ),
+                        child: Center(
+                          child: RegularTextWidget(
+                            title: "<",
+                            fontcolor: Colors.black,
+                            fontFamily: FONT_STYLE_QUICK_BOLD,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 0.6.w,
+                      ),
+                      CustomCard(
+                        isGiveWith: false,
+                        margin: EdgeInsets.zero,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 2.w,
+                        ),
+                        onCardPress: () {
+                          portfolioPageController.nextPage(
+                            duration: const Duration(milliseconds: 1000),
+                            curve: Curves.easeIn,
+                          );
+                        },
+                        child: Center(
+                          child: RegularTextWidget(
+                            title: ">",
+                            fontFamily: FONT_STYLE_QUICK_BOLD,
+                            fontcolor: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: double.minPositive,
+                width: double.infinity,
+                child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(
+                    dragDevices: {
+                      PointerDeviceKind.touch,
+                      PointerDeviceKind.mouse,
+                    },
+                  ),
+                  child: PageView(
+                    scrollDirection: Axis.horizontal,
+                    controller: portfolioPageController,
+                    onPageChanged: (num) {
+                      setState(() {
+                        curr = num;
+                      });
+                    },
+                    children: list(),
+                  ),
+                ),
+              ),
+              ExpansionTile(
+                // initiallyExpanded: true,
+                tilePadding: const EdgeInsets.all(6),
+                title: RegularTextWidget(
+                  title: 'Work Experience',
+                ),
+                key: const Key('0'),
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: FixedTimeline.tileBuilder(
+                      theme: TimelineTheme.of(context).copyWith(
+                        nodePosition: 0,
+                      ),
+                      builder: TimelineTileBuilder.connected(
+                        contentsAlign: ContentsAlign.basic,
+                        contentsBuilder: (context, index) => workExplist(),
+                        itemCount: 2,
+                        indicatorPositionBuilder: (context, index) {
+                          return 0.01;
+                        },
+                        indicatorBuilder: (_, index) {
+                          return DotIndicator(
+                            color: Theme.of(context).colorScheme.secondary,
+                            size: 12,
+                          );
+                        },
+                        lastConnectorBuilder: (context) {
+                          return DashedLineConnector(
+                            color: Theme.of(context).colorScheme.primary,
+                          );
+                        },
+                        connectorBuilder: (_, index, ___) =>
+                            DashedLineConnector(
+                          color: Theme.of(context).colorScheme.primary,
+                          thickness: 2,
+                        ), // indicatorStyle: IndicatorStyle.dot,
+                      ),
+                    ),
+                  )
+                ],
+                onExpansionChanged: (expanded) {
+                  if (expanded) {
+                    setState(() {
+                      selected = 0;
+                    });
+                  } else {
+                    setState(() {
+                      selected = -1;
+                    });
+                  }
+                },
+              ),
+              ExpansionTile(
+                key: const Key('1'),
+                tilePadding: const EdgeInsets.all(6),
+                title: RegularTextWidget(
+                  title: 'Education',
+                ),
+                controller: controller,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            BoldTextWidget(
+                              title:
+                                  "Bachelor of Engineering in Computer Engineering",
+                              fontFamily: FONT_STYLE_QUICK_BOLD,
+                            ),
+                            BoldTextWidget(
+                              title: "2019-2023",
+                            ),
+                          ],
+                        ),
+                        BoldTextWidget(
+                          title: "Darshan University, India",
+                          fontsize:
+                              Theme.of(context).textTheme.bodySmall!.fontSize,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            BoldTextWidget(
+                              title: "Higher secondary",
+                              fontFamily: FONT_STYLE_QUICK_BOLD,
+                            ),
+                            BoldTextWidget(
+                              title: "2017-2019",
+                            ),
+                          ],
+                        ),
+                        BoldTextWidget(
+                          title:
+                              "Krishna International School, Rajkot, Gujarat, India",
+                          fontsize:
+                              Theme.of(context).textTheme.bodySmall!.fontSize,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                onExpansionChanged: (expanded) {
+                  if (expanded) {
+                    setState(() {
+                      selected = 1;
+                    });
+                  } else {
+                    setState(() {
+                      selected = -1;
+                    });
+                  }
+                },
+              )
             ],
           ),
         ),
